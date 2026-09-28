@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ing. Carlos Morales - Tarjeta Digital</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #30a337 0%, #06642e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+			background-image: url('fondo.png');
+			background-position: right center;
+			background-size: contain;
+			background-repeat: no-repeat;
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 
+                0 20px 40px rgba(6, 100, 46, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 30px 60px rgba(6, 100, 46, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .header-logos {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .company-logo {
+            flex: 1;
+            min-width: 120px;
+            max-width: 300px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .nfpa-logo {
+            width: 80px;
+            height: 60px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nfpa-logo img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #30a337, #06642e);
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(48, 163, 55, 0.3);
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .title {
+            font-size: 18px;
+            color: #30a337;
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            margin-bottom: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            color: #4a5568;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(48, 163, 55, 0.08);
+            border: 1px solid rgba(48, 163, 55, 0.2);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .contact-item:hover {
+            background: rgba(48, 163, 55, 0.15);
+            color: #06642e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(48, 163, 55, 0.2);
+        }
+
+        .contact-item i {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            color: #30a337;
+        }
+
+        .website-link {
+            margin: 16px 0;
+            padding: 12px;
+            background: rgba(245, 245, 246, 0.7);
+            border-radius: 12px;
+            border: 1px solid #d9dadb;
+        }
+
+        .website-link a {
+            color: #30a337;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .website-link a:hover {
+            text-decoration: underline;
+        }
+
+        .expertise {
+            background: rgba(48, 163, 55, 0.08);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 1px solid rgba(48, 163, 55, 0.2);
+        }
+
+        .expertise h3 {
+            color: #06642e;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .service-badge {
+            background: linear-gradient(135deg, #30a337, #06642e);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(48, 163, 55, 0.3);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #30a337, #06642e);
+            color: white;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(48, 163, 55, 0.3);
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            .name {
+                font-size: 24px;
+            }
+            
+            .profile-img {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+
+            .header-logos {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 16px;
+            }
+
+            .company-logo {
+                width: 100%;
+                min-width: auto;
+                max-width: 250px;
+                height: 50px;
+            }
+
+            .nfpa-logo {
+                width: 60px;
+                height: 45px;
+            }
+
+            .services {
+                gap: 6px;
+            }
+
+            .service-badge {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .contact-item {
+                font-size: 13px;
+                padding: 10px 14px;
+            }
+
+            .website-link a {
+                font-size: 13px;
+            }
+        }
+
+        /* Para pantallas muy pequeñas (menos de 360px) */
+        @media (max-width: 360px) {
+            .card {
+                padding: 20px 15px;
+            }
+
+            .header-logos {
+                gap: 8px;
+            }
+
+            .company-logo {
+                max-width: 200px;
+                height: 40px;
+            }
+
+            .nfpa-logo {
+                width: 50px;
+                height: 35px;
+            }
+
+            .name {
+                font-size: 22px;
+            }
+
+            .title {
+                font-size: 16px;
+            }
+
+            .service-badge {
+                font-size: 10px;
+                padding: 5px 10px;
+            }
+
+            .contact-item {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header-logos">
+            <div class="company-logo">
+                <img src='logo.svg' alt="SMI Imperio Logo">
+            </div>
+            <div class="nfpa-logo">
+                <img src='nfpa_logo.svg' alt="NFPA Logo">
+            </div>
+        </div>
+        
+        <div class="profile-img">
+            CM
+        </div>
+        
+        <h1 class="name">Ing. Carlos Morales</h1>
+        <p class="title">Gerente Comercial</p>
+        
+        <div class="contact-info">
+            <a href="https://wa.me/525532611966?text=Hola%20Ing.%20Carlos%20Morales,%20encontré%20su%20tarjeta%20digital%20y%20me%20gustaría%20contactarlo." target="_blank" class="contact-item">
+                <i style="margin-right:10px" data-lucide="message-circle"></i>
+                <span>55 3261-1966</span>
+            </a>
+            <a href="tel:+525556345135" class="contact-item">
+                <i style="margin-right:10px" data-lucide="phone"></i>
+                <span>5634 5135</span>
+            </a>
+            <a href="mailto:ing.carlos.morales1@gmail.com" class="contact-item">
+                <i style="margin-right:10px" data-lucide="mail"></i>
+                <span>ing.carlos.morales1@gmail.com</span>
+            </a>
+        </div>
+
+        <div class="website-link">
+            <a href="https://www.smimperio.com.mx" target="_blank">
+                <i style="margin-right:10px" data-lucide="globe"></i>
+                www.smimperio.com.mx
+            </a>
+        </div>
+
+        <div class="expertise">
+            <h3>Especialistas en:</h3>
+            <div class="services">
+                <div class="service-badge">Sistemas de bombeo</div>
+                <div class="service-badge">Sistemas de protección contra incendio</div>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn" onclick="downloadVCard()">
+                <i data-lucide="user-plus"></i>
+                Guardar Contacto
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Ing. Carlos Morales
+TITLE:Gerente Comercial
+ORG:SMI Imperio
+EMAIL:ing.carlos.morales1@gmail.com
+TEL;TYPE=CELL:+525532611966
+TEL;TYPE=WORK:+525556345135
+URL:https://www.smimperio.com.mx
+NOTE:Especialistas en: Sistemas de bombeo, Instalaciones hidráulicas, Sistemas de protección contra incendio, Instalaciones de Gas natural y Gas LP
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'Ing_Carlos_Morales.vcf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Animación de entrada
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SM Imperio | Sistemas contra incendio (PCI) y bombeo en CDMX</title>
+  <meta name="description" content="Ingeniería, instalación y mantenimiento de sistemas de protección contra incendio y bombeo bajo normas NFPA y NOM. Certificaciones NFPA 13, 14, 20 y 25. Desde 2012 en la Ciudad de México.">
+  <meta name="theme-color" content="#006633">
+  <link rel="canonical" href="https://www.smimperio.com.mx/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:site_name" content="SM Imperio">
+  <meta property="og:title" content="SM Imperio | Sistemas contra incendio y bombeo">
+  <meta property="og:description" content="Ingeniería, instalación y mantenimiento de sistemas PCI y bombeo bajo normas NFPA y NOM. Desde 2012.">
+  <meta property="og:url" content="https://www.smimperio.com.mx/">
+  <meta property="og:image" content="https://www.smimperio.com.mx/img/brand/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="img/brand/favicon.png">
+  <link rel="apple-touch-icon" href="img/brand/apple-touch-icon.png">
+
+  <!-- Tema: se aplica antes de pintar para evitar parpadeo -->
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("sm-theme"); } catch (e) {}
+      if (!t) t = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = t;
+      if (t === "dark") document.querySelector('meta[name="theme-color"]').setAttribute("content", "#0a110d");
+    })();
+    /* Configuración del sitio — ajusta aquí:
+       whatsapp     → número con lada país, sin + ni espacios
+       formEndpoint → URL de un webhook (n8n, Formspree, etc.). Si está vacío, el formulario abre WhatsApp con el mensaje. */
+    window.SM_CONFIG = { whatsapp: "525532611966", formEndpoint: "" };
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/main.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SM Imperio",
+    "description": "Proveedora de mantenimiento y construcción integral, especializada en sistemas de protección contra incendio (PCI) y sistemas de bombeo.",
+    "url": "https://www.smimperio.com.mx/",
+    "logo": "https://www.smimperio.com.mx/img/brand/logo.png",
+    "image": "https://www.smimperio.com.mx/img/brand/og-image.jpg",
+    "telephone": "+52 55 5634 5135",
+    "foundingDate": "2012-03-12",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dr. Olvera No. 114, Col. Doctores",
+      "addressLocality": "Cuauhtémoc",
+      "addressRegion": "Ciudad de México",
+      "addressCountry": "MX"
+    }
+  }
+  </script>
+</head>
+
+<body x-data="app" @keydown.window="onKey($event)">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- Iconos (sprite) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1.3-1.3-1.9-1-.8.6a3 3 0 0 1-1.4-1.4l.6-.8-1-1.9z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M12 6h.01M16 6h.01M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01"/></symbol>
+    <symbol id="i-tool" viewBox="0 0 24 24"><path d="m2 22 8-8M14 10l4 4M11.5 6.5l6 6M14 3l7 7-3 3-7-7z"/></symbol>
+    <symbol id="i-zoom" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  </svg>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" :class="{ 'is-scrolled': scrolled }">
+    <div class="container">
+      <a class="brand" href="#inicio" aria-label="SM Imperio, ir al inicio">
+        <img class="logo-light" src="img/brand/logo.png" alt="SM Imperio" width="180" height="30">
+        <img class="logo-dark" src="img/brand/logo-dark.png" alt="" width="180" height="30" aria-hidden="true">
+      </a>
+
+      <nav class="nav nav--desktop" aria-label="Principal">
+        <a class="nav__link" href="#nosotros" :class="{ 'is-active': active === 'nosotros' }">Nosotros</a>
+        <a class="nav__link" href="#certificaciones" :class="{ 'is-active': active === 'certificaciones' }">Certificaciones</a>
+        <a class="nav__link" href="#proyectos" :class="{ 'is-active': active === 'proyectos' }">Proyectos</a>
+        <a class="nav__link" href="#suministros" :class="{ 'is-active': active === 'suministros' }">Suministros</a>
+        <a class="nav__link" href="#contacto" :class="{ 'is-active': active === 'contacto' }">Contacto</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" @click="toggleTheme()" :aria-label="isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'" :title="isDark ? 'Modo claro' : 'Modo oscuro'">
+          <svg class="ic" x-show="!isDark"><use href="#i-moon"/></svg>
+          <svg class="ic" x-show="isDark" x-cloak><use href="#i-sun"/></svg>
+        </button>
+        <a class="btn btn--primary btn--sm" href="#contacto">Solicitar cotización</a>
+        <button class="icon-btn menu-btn" type="button" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-controls="mobile-nav" aria-label="Abrir menú">
+          <svg class="ic" x-show="!menuOpen"><use href="#i-menu"/></svg>
+          <svg class="ic" x-show="menuOpen" x-cloak><use href="#i-x"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-nav" class="mobile-nav nav" x-show="menuOpen" x-cloak x-transition.opacity.duration.200ms @keydown.escape.window="menuOpen = false" aria-label="Menú móvil">
+      <a class="nav__link" href="#nosotros" @click="menuOpen = false">Nosotros</a>
+      <a class="nav__link" href="#certificaciones" @click="menuOpen = false">Certificaciones</a>
+      <a class="nav__link" href="#proyectos" @click="menuOpen = false">Proyectos</a>
+      <a class="nav__link" href="#suministros" @click="menuOpen = false">Suministros</a>
+      <a class="nav__link" href="#contacto" @click="menuOpen = false">Contacto</a>
+      <a class="btn btn--primary btn--block" href="#contacto" @click="menuOpen = false">Solicitar cotización</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div>
+          <span class="pill anim" style="--i:0"><i></i> Protección contra incendio · Bombeo · Desde 2012</span>
+          <h1 id="hero-title" class="anim" style="--i:1">Sistemas contra incendio que responden <em>cuando más importa</em></h1>
+          <p class="hero__lead anim" style="--i:2">Ingeniería, instalación y mantenimiento de sistemas PCI y de bombeo bajo normas NFPA y NOM. Un equipo con certificaciones internacionales que cuida tu proyecto como propio.</p>
+          <div class="hero__cta anim" style="--i:3">
+            <a class="btn btn--primary btn--lg" href="#contacto">Solicitar cotización <svg class="ic"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn--ghost btn--lg" href="#proyectos">Ver proyectos</a>
+          </div>
+          <ul class="hero__micro anim" style="--i:4">
+            <li><svg class="ic"><use href="#i-check"/></svg> Normas NFPA y NOM-002-STPS-2010</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Más de 20 clientes de referencia</li>
+            <li><svg class="ic"><use href="#i-check"/></svg> Taller en Valle de Chalco</li>
+          </ul>
+        </div>
+
+        <div class="hero__visual anim" style="--i:2">
+          <div class="hero__photo">
+            <img src="img/p/pci-bombas-rojas.webp" alt="Cuarto de bombas contra incendio con equipos y tubería roja instalados por SM Imperio" width="1100" height="564" fetchpriority="high">
+          </div>
+          <div class="hero__photo2">
+            <img src="img/p/pci-panel-deteccion_b.webp" alt="Panel de detección y alarma de humo" width="640" height="789" loading="eager">
+          </div>
+          <div class="hero__badge">
+            <img src="img/cert/nfpa-13.webp" alt="" width="46" height="46">
+            <div><strong>NFPA 13 · 14 · 20 · 25</strong><span>Certificaciones internacionales</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Franja de confianza: clientes -->
+    <div class="trust" aria-label="Clientes">
+      <div class="container">
+        <p class="trust__label">Clientes que nos prefieren</p>
+        <div class="marquee">
+          <div class="marquee__track">
+            <span>Liverpool</span><span>Nacional Financiera</span><span>BBVA Bancomer</span><span>Secretaría de Marina</span><span>SEDATU</span><span>Ricamar</span><span>Bosque Real Huixquilucan</span>
+            <span aria-hidden="true">Liverpool</span><span aria-hidden="true">Nacional Financiera</span><span aria-hidden="true">BBVA Bancomer</span><span aria-hidden="true">Secretaría de Marina</span><span aria-hidden="true">SEDATU</span><span aria-hidden="true">Ricamar</span><span aria-hidden="true">Bosque Real Huixquilucan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ NOSOTROS ============ -->
+    <section id="nosotros" class="section" aria-labelledby="nosotros-title">
+      <div class="container">
+        <div class="about__intro">
+          <div x-reveal>
+            <span class="eyebrow">Nosotros</span>
+            <h2 id="nosotros-title" class="h2">Integrando soluciones con calidad</h2>
+            <p class="lead" style="margin-top:1.4rem">
+              <strong>SM Imperio</strong> es una empresa fundada el 12 de marzo de 2012, proveedora de mantenimiento y construcción integral, especializada en <strong>Sistemas de Protección Contra Incendio (PCI)</strong> y <strong>sistemas de bombeo</strong>.
+            </p>
+          </div>
+          <div class="stats" x-reveal="2" role="list">
+            <div class="stat" role="listitem"><b x-count="years">14</b><span>años de trayectoria</span></div>
+            <div class="stat" role="listitem"><b><span x-count="20">20</span>+</b><span>clientes de referencia</span></div>
+            <div class="stat" role="listitem"><b x-count="8">8</b><span>certificaciones y marcas</span></div>
+          </div>
+        </div>
+
+        <!-- Servicios PCI -->
+        <h3 class="sub-title" x-reveal><svg class="ic" style="color:var(--accent);width:1.2em;height:1.2em"><use href="#i-flame"/></svg> Protección Contra Incendio <small>· Nuestra principal especialidad</small></h3>
+        <p class="sub-lead" x-reveal>Invertimos de forma constante en cursos y certificaciones internacionales para diseñar, instalar y mantener tu sistema con los estándares del sector.</p>
+
+        <div class="svc-grid">
+          <article class="svc" x-reveal="0">
+            <div class="svc__img"><img src="img/p/t/pci-mantenimiento.webp" alt="Filtros y consumibles para mantenimiento de bomba contra incendio" loading="lazy" width="640" height="853"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-wrench"/></svg></span>
+              <h4>Mantenimiento preventivo y correctivo</h4>
+              <p>Revisión, pruebas y reparación de sistemas contra incendio, para que operen el día que los necesites.</p>
+              <div class="tags"><span class="tag">Preventivo</span><span class="tag">Correctivo</span><span class="tag">NFPA 25</span></div>
+            </div>
+          </article>
+
+          <article class="svc" x-reveal="1">
+            <div class="svc__img"><img src="img/p/t/pci-cuarto-bombas.webp" alt="Cuarto de bombas contra incendio instalado" loading="lazy" width="640" height="480"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-shield"/></svg></span>
+              <h4>Cuartos de bombas contra incendio</h4>
+              <p>Instalación integral de cuartos de bombas bajo normas NFPA y mexicanas.</p>
+              <div class="tags"><span class="tag">NFPA 20</span><span class="tag">Normas mexicanas</span></div>
+            </div>
+          </article>
+
+          <article class="svc" x-reveal="0">
+            <div class="svc__img"><img src="img/p/t/pci-rociadores.webp" alt="Red de rociadores contra incendio en techo" loading="lazy" width="640" height="480"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
+              <h4>Rociadores y detección de humo</h4>
+              <p>Ingeniería, suministro e instalación de rociadores y sistemas de detección de humo.</p>
+              <div class="tags"><span class="tag">NFPA 13</span><span class="tag">NOM-002-STPS-2010</span></div>
+            </div>
+          </article>
+
+          <article class="svc" x-reveal="1">
+            <div class="svc__img"><img src="img/p/t/pci-soportes-1.webp" alt="Soportes antisísmicos en tubería contra incendio" loading="lazy" width="640" height="390"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-building"/></svg></span>
+              <h4>Soportes antisísmicos</h4>
+              <p>Soportería antisísmica para tuberías bajo normas NFPA.</p>
+              <div class="tags"><span class="tag">NFPA</span><span class="tag">Antisísmico</span></div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Otros servicios -->
+        <h3 class="sub-title" x-reveal>Otros servicios</h3>
+        <div class="svc-grid svc-grid--other">
+          <article class="svc" x-reveal="0">
+            <div class="svc__img"><img src="img/p/t/bombeo-hidroneumatico.webp" alt="Tanques de un sistema hidroneumático" loading="lazy" width="553" height="508"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
+              <h4>Bombeo y presurización</h4>
+              <p>Sistemas de bombeo de aguas grises y presurización (hidroneumáticos).</p>
+            </div>
+          </article>
+          <article class="svc" x-reveal="1">
+            <div class="svc__img"><img src="img/p/t/tablero-control-1.webp" alt="Tablero de control eléctrico armado" loading="lazy" width="535" height="410"></div>
+            <div class="svc__body">
+              <span class="svc__icon"><svg class="ic"><use href="#i-zap"/></svg></span>
+              <h4>Tableros de control</h4>
+              <p>Suministro (venta), instalación y reparación de tableros de control.</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Misión / Visión / Valores -->
+        <div class="mvv" x-reveal>
+          <div class="mvv__tabs" role="tablist" aria-label="Misión, visión y valores">
+            <button class="mvv__tab" role="tab" :aria-selected="mvvTab === 'mision'" @click="mvvTab = 'mision'" type="button">Misión <svg class="ic"><use href="#i-arrow"/></svg></button>
+            <button class="mvv__tab" role="tab" :aria-selected="mvvTab === 'vision'" @click="mvvTab = 'vision'" type="button">Visión <svg class="ic"><use href="#i-arrow"/></svg></button>
+            <button class="mvv__tab" role="tab" :aria-selected="mvvTab === 'valores'" @click="mvvTab = 'valores'" type="button">Valores <svg class="ic"><use href="#i-arrow"/></svg></button>
+          </div>
+          <div class="mvv__panel" role="tabpanel" aria-live="polite">
+            <!-- Contenido sin JS: visible mientras Alpine no arranque -->
+            <p x-show="mvvTab === 'mision'" x-transition.opacity.duration.250ms x-text="mvv.mision">Desarrollar con la más alta calidad los proyectos que nos encomiendan nuestros clientes, cuidándolos como propios.</p>
+            <p x-show="mvvTab === 'vision'" x-cloak x-transition.opacity.duration.250ms x-text="mvv.vision"></p>
+            <ul class="values" x-show="mvvTab === 'valores'" x-cloak x-transition.opacity.duration.250ms>
+              <li><svg class="ic"><use href="#i-check"/></svg> Rentabilidad</li>
+              <li><svg class="ic"><use href="#i-check"/></svg> Respeto profesional</li>
+              <li><svg class="ic"><use href="#i-check"/></svg> Honradez</li>
+              <li><svg class="ic"><use href="#i-check"/></svg> Satisfacción al cliente</li>
+              <li><svg class="ic"><use href="#i-check"/></svg> Mejora continua</li>
+              <li><svg class="ic"><use href="#i-check"/></svg> Colaboración</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Equipo -->
+        <h3 class="sub-title" x-reveal>Nuestro equipo de trabajo</h3>
+        <div class="team">
+          <article class="member" x-reveal="0"><div class="member__avatar" aria-hidden="true">CM</div><h4>Carlos Morales Guzmán</h4><small>Ing.</small></article>
+          <article class="member" x-reveal="1"><div class="member__avatar" aria-hidden="true">JN</div><h4>Juan Manuel Nequiz</h4></article>
+          <article class="member" x-reveal="2"><div class="member__avatar" aria-hidden="true">AF</div><h4>Alan Flores Rivera</h4></article>
+          <article class="member" x-reveal="3"><div class="member__avatar" aria-hidden="true">JM</div><h4>Johny Martínez Esteban</h4></article>
+          <article class="member" x-reveal="4"><div class="member__avatar" aria-hidden="true">AS</div><h4>Abraham Salazar Gutiérrez</h4><small>L.D. y C.P.</small></article>
+        </div>
+
+        <!-- Oficinas -->
+        <h3 class="sub-title" x-reveal>Oficinas en la Ciudad de México y Valle de Chalco</h3>
+        <div class="offices">
+          <article class="office" x-reveal="0">
+            <span class="svc__icon"><svg class="ic"><use href="#i-building"/></svg></span>
+            <div>
+              <h4>Oficina matriz</h4>
+              <p>Dr. Olvera No. 114, Col. Doctores, Alcaldía Cuauhtémoc, CDMX.</p>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Dr.+Olvera+114+Col.+Doctores+Cuauhtemoc+CDMX" target="_blank" rel="noopener">Cómo llegar <svg class="ic"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="office" x-reveal="1">
+            <span class="svc__icon"><svg class="ic"><use href="#i-tool"/></svg></span>
+            <div>
+              <h4>Taller</h4>
+              <p>Calle Nte. 9, Lt. 7, Col. Ma. Isabel, Valle de Chalco, Estado de México, C.P. 56615.</p>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Norte+9+Col.+Maria+Isabel+Valle+de+Chalco+56615" target="_blank" rel="noopener">Cómo llegar <svg class="ic"><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CERTIFICACIONES ============ -->
+    <section id="certificaciones" class="section section--alt" aria-labelledby="cert-title">
+      <div class="container">
+        <div class="section-head" x-reveal>
+          <span class="eyebrow">Certificaciones</span>
+          <h2 id="cert-title" class="h2">Capacitación internacional en cada instalación</h2>
+          <p>Las normas NFPA y los principales fabricantes del sector respaldan la forma en que diseñamos, instalamos y mantenemos tu sistema contra incendio.</p>
+        </div>
+
+        <div class="cert-block">
+          <h3 x-reveal>Normas NFPA <span>· Estándares internacionales de protección contra incendio</span></h3>
+          <div class="cert-grid">
+            <article class="cert" x-reveal="0"><div class="cert__logo"><img src="img/cert/nfpa-13.webp" alt="Insignia NFPA 13" width="360" height="360" loading="lazy"></div><h4>NFPA 13</h4><p>Instalación de sistemas de rociadores automáticos</p></article>
+            <article class="cert" x-reveal="1"><div class="cert__logo"><img src="img/cert/nfpa-14.webp" alt="Insignia NFPA 14" width="360" height="360" loading="lazy"></div><h4>NFPA 14</h4><p>Sistemas de tubería vertical y mangueras</p></article>
+            <article class="cert" x-reveal="2"><div class="cert__logo"><img src="img/cert/nfpa-20.webp" alt="Insignia NFPA 20" width="360" height="360" loading="lazy"></div><h4>NFPA 20</h4><p>Instalación de bombas estacionarias contra incendio</p></article>
+            <article class="cert" x-reveal="3"><div class="cert__logo"><img src="img/cert/nfpa-25.webp" alt="Insignia NFPA 25" width="360" height="360" loading="lazy"></div><h4>NFPA 25</h4><p>Inspección, pruebas y mantenimiento de sistemas a base de agua</p></article>
+          </div>
+        </div>
+
+        <div class="cert-block">
+          <h3 x-reveal>Fabricantes y tecnologías <span>· Marcas líderes en protección contra incendio</span></h3>
+          <div class="cert-grid">
+            <article class="cert" x-reveal="0"><div class="cert__logo"><img src="img/cert/blazemaster.webp" alt="Logotipo BlazeMaster Fire Protection Systems" width="360" height="360" loading="lazy"></div><h4>BlazeMaster</h4><p>Tubería CPVC para sistemas de protección contra incendio</p></article>
+            <article class="cert" x-reveal="1"><div class="cert__logo"><img src="img/cert/novec.webp" alt="Logotipo Novec" width="360" height="360" loading="lazy"></div><h4>Novec</h4><p>Supresión de incendio con agente limpio</p></article>
+            <article class="cert" x-reveal="2"><div class="cert__logo"><img src="img/cert/hochiki.webp" alt="Logotipo Hochiki de México" width="360" height="360" loading="lazy"></div><h4>Hochiki</h4><p>Detección y alarma de incendio</p></article>
+            <article class="cert" x-reveal="3"><div class="cert__logo"><img src="img/cert/viking.webp" alt="Logotipo Viking Fire Protection" width="360" height="360" loading="lazy"></div><h4>Viking</h4><p>Rociadores y componentes contra incendio</p></article>
+          </div>
+        </div>
+
+        <div class="callout" x-reveal>
+          <svg class="ic"><use href="#i-award"/></svg>
+          <p><strong>Nos actualizamos constantemente.</strong> Invertimos en cursos y certificaciones internacionales para que tu sistema lo diseñe, instale y mantenga gente que se capacita, no que improvisa.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section id="proyectos" class="section" aria-labelledby="proy-title">
+      <div class="container">
+        <div class="section-head" x-reveal>
+          <span class="eyebrow">Proyectos</span>
+          <h2 id="proy-title" class="h2">Instalaciones que hablan por nosotros</h2>
+          <p>Una muestra de sistemas contra incendio, bombeo y tableros de control ejecutados por nuestro equipo.</p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filtrar proyectos" x-reveal>
+          <template x-for="c in cats" :key="c.id">
+            <button type="button" class="chip" :aria-pressed="filter === c.id" @click="filter = c.id">
+              <span x-text="c.label"></span><small x-text="count(c.id)"></small>
+            </button>
+          </template>
+        </div>
+
+        <div class="gallery">
+          <template x-for="(item, idx) in items" :key="item.src">
+            <button type="button" class="shot" :class="{ 'shot--tall': item.tall }"
+                    x-show="matches(item)"
+                    x-transition:enter="shot-in" x-transition:enter-start="shot-in-start" x-transition:enter-end="shot-in-end"
+                    @click="openLb(item, $event)" :aria-label="'Ampliar foto: ' + item.title">
+              <img :src="'img/p/t/' + item.src + '.webp'" :alt="item.title" loading="lazy">
+              <span class="shot__cap">
+                <span><small x-text="catLabel(item.cat)"></small><span x-text="item.title"></span></span>
+                <span class="shot__zoom" aria-hidden="true"><svg class="ic"><use href="#i-zoom"/></svg></span>
+              </span>
+            </button>
+          </template>
+        </div>
+
+        <!-- Clientes -->
+        <div class="clients">
+          <div x-reveal>
+            <h3>Clientes que nos prefieren</h3>
+            <p class="sub">De banca y comercio a gobierno y desarrollos residenciales: proyectos donde la seguridad no se negocia.</p>
+          </div>
+          <div x-reveal="2">
+            <ul class="client-list">
+              <li class="client client--star">Liverpool</li>
+              <li class="client client--star">Nacional Financiera S.N.C.</li>
+              <li class="client client--star">BBVA Bancomer</li>
+              <li class="client client--star">Secretaría de Marina</li>
+              <li class="client client--star">SEDATU</li>
+              <li class="client client--star">Ricamar</li>
+              <li class="client client--star">Bosque Real Huixquilucan</li>
+            </ul>
+            <ul class="client-list" style="margin-top:.6rem" x-show="showAllClients" x-cloak x-transition.opacity>
+              <li class="client">Muebles Dico</li>
+              <li class="client">Fusión BS</li>
+              <li class="client">Restaurante La Galería</li>
+              <li class="client">Gasolinera Estación de Servicio San Antonio</li>
+              <li class="client">Rodríguez y Medina Abogados A.C.</li>
+              <li class="client">Residencial Colinas del Sur</li>
+              <li class="client">Edificio Paseo de Río Churubusco 248</li>
+              <li class="client">OLA Servicio Integral</li>
+              <li class="client">Industrias Repshel S.A. de C.V.</li>
+              <li class="client">Techno Parque Azcapotzalco</li>
+              <li class="client">Edificio Culiacán 118</li>
+              <li class="client">Conjunto Residencial Cumbres de Santa Fe</li>
+              <li class="client">Grupo D'Lida</li>
+              <li class="client">PAN DF</li>
+              <li class="client">U Storage</li>
+              <li class="client">Hotel Copacabana Beach Acapulco</li>
+            </ul>
+            <button type="button" class="client-more" @click="showAllClients = !showAllClients" :aria-expanded="showAllClients">
+              <span x-text="showAllClients ? 'Ver menos' : 'Ver más clientes'">Ver más clientes</span>
+              <svg class="ic"><use href="#i-down"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SUMINISTROS ============ -->
+    <section id="suministros" class="section section--alt" aria-labelledby="sum-title">
+      <div class="container">
+        <div class="section-head" x-reveal>
+          <span class="eyebrow">Suministros</span>
+          <h2 id="sum-title" class="h2">Equipo y material listo para tu obra</h2>
+          <p>Además de instalar, suministramos lo que tu sistema necesita: tableros, tubería y conexiones, bombas y presurización. Con asesoría de quien los instala todos los días.</p>
+        </div>
+
+        <div class="sup-grid">
+          <article class="sup" x-reveal="0">
+            <div class="sup__media"><img src="img/p/t/tablero-control-1.webp" alt="Tablero de control eléctrico para bombas" loading="lazy" width="640" height="490"></div>
+            <div class="sup__body">
+              <h4>Tableros de control</h4>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg> Para bombas sumergibles, motobombas, bombas de combustión para PCI, riego, cárcamos y fuentes</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Operación alternada o simultánea</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Gabinete IP66, nuevo y con garantía</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Instalación y reparación</li>
+              </ul>
+              <button type="button" class="btn btn--primary btn--sm" @click="quote('Tableros de control')">Cotizar tableros <svg class="ic"><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <article class="sup" x-reveal="1">
+            <div class="sup__media sup__media--logo"><img src="img/cert/blazemaster.webp" alt="Logotipo BlazeMaster" loading="lazy" width="360" height="360"></div>
+            <div class="sup__body">
+              <h4>Tubería y conexiones BlazeMaster</h4>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg> Stock para entrega inmediata</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Venta desde una pieza o un metro de tubería</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Suministro solo o con instalación</li>
+              </ul>
+              <button type="button" class="btn btn--primary btn--sm" @click="quote('Suministro de tubería y conexiones')">Cotizar tubería <svg class="ic"><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+
+          <article class="sup" x-reveal="2">
+            <div class="sup__media"><img src="img/p/t/bombeo-equipo.webp" alt="Equipo de bombeo con motores y tubería azul" loading="lazy" width="381" height="349"></div>
+            <div class="sup__body">
+              <h4>Bombas e hidroneumáticos</h4>
+              <ul class="checks">
+                <li><svg class="ic"><use href="#i-check"/></svg> Hidroneumáticos de ½ a 1 hp, con tanque de 24 o 50 L</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Bombas presurizadoras, sumergibles, periféricas y motobombas autocebantes</li>
+                <li><svg class="ic"><use href="#i-check"/></svg> Asesoría e instalación</li>
+              </ul>
+              <button type="button" class="btn btn--primary btn--sm" @click="quote('Bombeo e hidroneumáticos')">Cotizar bombas <svg class="ic"><use href="#i-arrow"/></svg></button>
+            </div>
+          </article>
+        </div>
+
+        <div class="more-equip" x-reveal>
+          <strong>También suministramos:</strong>
+          <span class="tag">Polipastos eléctricos</span><span class="tag">Compresores con kit de pintura</span><span class="tag">Mangueras tipo bombero</span><span class="tag">Aspersoras</span><span class="tag">Sopladoras</span>
+          <button type="button" class="btn btn--ghost btn--sm" style="margin-left:auto" @click="quote('Suministro de equipo')">Preguntar por disponibilidad</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section id="contacto" class="section contact" aria-labelledby="contacto-title">
+      <div class="container">
+        <div class="section-head" x-reveal>
+          <span class="eyebrow">Contacto</span>
+          <h2 id="contacto-title" class="h2">Cuéntanos qué necesitas y te cotizamos</h2>
+          <p>Proyectos nuevos, mantenimiento o suministro. Déjanos tus datos o escríbenos directo: te respondemos con una propuesta clara.</p>
+        </div>
+
+        <div class="contact__grid">
+          <div class="contact__list" x-reveal>
+            <a class="contact__item" :href="waLink('Hola, quiero una cotización con SM Imperio.')" target="_blank" rel="noopener" href="https://wa.me/525532611966">
+              <svg class="ic"><use href="#i-chat"/></svg><span><small>WhatsApp</small><b>55 3261 1966</b></span>
+            </a>
+            <a class="contact__item" href="tel:+525556345135">
+              <svg class="ic"><use href="#i-phone"/></svg><span><small>Oficina</small><b>(55) 5634 5135</b></span>
+            </a>
+            <a class="contact__item" href="tel:+525526765518">
+              <svg class="ic"><use href="#i-phone"/></svg><span><small>Celular</small><b>55 2676 5518</b></span>
+            </a>
+            <a class="contact__item" href="mailto:smiadmon120312@gmail.com">
+              <svg class="ic"><use href="#i-mail"/></svg><span><small>Correo</small><b>smiadmon120312@gmail.com</b></span>
+            </a>
+            <a class="contact__item" href="https://www.google.com/maps/search/?api=1&amp;query=Dr.+Olvera+114+Col.+Doctores+Cuauhtemoc+CDMX" target="_blank" rel="noopener">
+              <svg class="ic"><use href="#i-pin"/></svg><span><small>Oficina matriz</small><b>Dr. Olvera 114, Col. Doctores, CDMX</b></span>
+            </a>
+          </div>
+
+          <div class="form-card" x-reveal="2">
+            <h3>Solicita tu cotización</h3>
+            <p>Solo 4 campos. Te contactamos para entender tu proyecto.</p>
+            <form @submit.prevent="submit()" novalidate>
+              <div class="field-row">
+                <div class="field">
+                  <label for="f-nombre">Nombre</label>
+                  <input id="f-nombre" type="text" autocomplete="name" x-model="form.nombre" placeholder="Tu nombre" required>
+                </div>
+                <div class="field">
+                  <label for="f-telefono">Teléfono / WhatsApp</label>
+                  <input id="f-telefono" type="tel" inputmode="tel" autocomplete="tel" x-model="form.telefono" placeholder="55 1234 5678" required>
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-servicio">¿Qué necesitas?</label>
+                <select id="f-servicio" x-model="form.servicio">
+                  <option value="">Selecciona una opción</option>
+                  <option>Sistema contra incendio (PCI)</option>
+                  <option>Mantenimiento preventivo o correctivo</option>
+                  <option>Cuarto de bombas contra incendio</option>
+                  <option>Rociadores y detección de humo</option>
+                  <option>Bombeo e hidroneumáticos</option>
+                  <option>Tableros de control</option>
+                  <option>Suministro de tubería y conexiones</option>
+                  <option>Suministro de equipo</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-mensaje">Cuéntanos brevemente <span style="font-weight:500;color:var(--muted)">(opcional)</span></label>
+                <textarea id="f-mensaje" x-model="form.mensaje" placeholder="Tipo de inmueble, ubicación, plazos…"></textarea>
+              </div>
+              <div class="hp" aria-hidden="true"><label>No llenar <input type="text" tabindex="-1" autocomplete="off" x-model="form.hp"></label></div>
+              <button class="btn btn--primary btn--lg btn--block" type="submit" :disabled="sending">
+                <span x-text="sending ? 'Enviando…' : 'Solicitar mi cotización'">Solicitar mi cotización</span>
+                <svg class="ic"><use href="#i-arrow"/></svg>
+              </button>
+              <p class="form-note"><svg class="ic"><use href="#i-lock"/></svg> Sin compromiso. Tus datos solo se usan para responderte.</p>
+              <p class="form-status" :class="{ 'is-error': status.error }" x-show="status.text" x-cloak x-text="status.text" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <a class="footer__brand" href="#inicio" aria-label="SM Imperio, ir al inicio">
+          <img class="logo-light" src="img/brand/logo.png" alt="SM Imperio" width="160" height="27" loading="lazy">
+          <img class="logo-dark" src="img/brand/logo-dark.png" alt="" width="160" height="27" loading="lazy" aria-hidden="true">
+        </a>
+        <nav class="footer__nav" aria-label="Pie de página">
+          <a href="#nosotros">Nosotros</a><a href="#certificaciones">Certificaciones</a><a href="#proyectos">Proyectos</a><a href="#suministros">Suministros</a><a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+      <div class="footer__legal">
+        <span>© 2012–<span x-text="year">2026</span> SM Imperio · «Integrando soluciones con calidad»</span>
+        <span>Imágenes, logotipos y nombres de terceros son propiedad de sus respectivos dueños.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CTA fijo en móvil -->
+  <div class="sticky-cta" aria-label="Contacto rápido">
+    <a class="btn btn--ghost btn--sm" href="tel:+525556345135"><svg class="ic"><use href="#i-phone"/></svg> Llamar</a>
+    <a class="btn btn--primary btn--sm" :href="waLink('Hola, quiero una cotización con SM Imperio.')" href="https://wa.me/525532611966" target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg> WhatsApp</a>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" x-show="lb.open" x-cloak x-transition.opacity.duration.200ms role="dialog" aria-modal="true" aria-label="Galería de proyectos"
+       @click.self="closeLb()" @touchstart.passive="touchStart($event)" @touchend.passive="touchEnd($event)">
+    <div class="lightbox__top">
+      <span class="lightbox__count" x-text="(lb.i + 1) + ' / ' + visible.length"></span>
+      <button type="button" class="icon-btn" x-ref="lbClose" @click="closeLb()" aria-label="Cerrar galería"><svg class="ic"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="lightbox__stage" @click.self="closeLb()">
+      <button type="button" class="lightbox__nav lightbox__nav--prev" @click="stepLb(-1)" aria-label="Foto anterior"><svg class="ic"><use href="#i-left"/></svg></button>
+      <img :src="'img/p/' + current.src + '.webp'" :alt="current.title">
+      <button type="button" class="lightbox__nav lightbox__nav--next" @click="stepLb(1)" aria-label="Foto siguiente"><svg class="ic"><use href="#i-right"/></svg></button>
+    </div>
+    <p class="lightbox__cap" x-text="current.title"></p>
+  </div>
+</body>
+</html>
