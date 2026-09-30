@@ -40,7 +40,7 @@ const MVV = {
   vision:  "Ser una empresa líder, rentable y sustentable, que evoluciona constantemente en todos sus ámbitos y estructuras para ofrecer la más alta calidad a bajos costos, de modo que la ejecución del proyecto sea plenamente confortable para nuestros clientes.",
 };
 
-const SECTIONS = ["nosotros", "certificaciones", "proyectos", "suministros", "contacto"];
+const SECTIONS = ["nosotros", "certificaciones", "equipo", "proyectos", "suministros", "contacto"];
 
 document.addEventListener("alpine:init", () => {
   document.documentElement.classList.add("has-alpine");
@@ -78,6 +78,23 @@ document.addEventListener("alpine:init", () => {
     io.observe(el);
     cleanup(() => io.disconnect());
   });
+
+  /* ---------- Carrusel de tarjetas (flechas y estado de los extremos) ---------- */
+  Alpine.data("carousel", () => ({
+    atStart: true,
+    atEnd: false,
+    init() { this.$nextTick(() => this.update()); },
+    update() {
+      const t = this.$refs.track;
+      this.atStart = t.scrollLeft <= 4;
+      this.atEnd = t.scrollLeft + t.clientWidth >= t.scrollWidth - 4;
+    },
+    go(dir) {
+      const t = this.$refs.track;
+      const gap = parseFloat(getComputedStyle(t).columnGap) || 16;
+      t.scrollBy({ left: dir * (t.firstElementChild.getBoundingClientRect().width + gap), behavior: "smooth" });
+    },
+  }));
 
   /* ---------- Componente principal ---------- */
   Alpine.data("app", () => ({

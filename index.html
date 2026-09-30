@@ -149,22 +149,24 @@
             <a class="btn btn--ghost btn--lg" href="#proyectos">Ver proyectos</a>
           </div>
           <ul class="hero__micro anim" style="--i:4">
-            <li><svg class="ic"><use href="#i-check"/></svg> Normas NFPA y NOM-002-STPS-2010</li>
             <li><svg class="ic"><use href="#i-check"/></svg> Más de 20 clientes de referencia</li>
             <li><svg class="ic"><use href="#i-check"/></svg> Taller en Valle de Chalco</li>
           </ul>
-        </div>
+          </div>
 
         <div class="hero__visual anim" style="--i:2">
           <div class="hero__photo">
             <img src="img/p/pci-bombas-rojas.webp" alt="Cuarto de bombas contra incendio con equipos y tubería roja instalados por SM Imperio" width="1100" height="564" fetchpriority="high">
           </div>
-          <div class="hero__photo2">
-            <img src="img/p/pci-panel-deteccion_b.webp" alt="Panel de detección y alarma de humo" width="640" height="789" loading="eager">
-          </div>
-          <div class="hero__badge">
-            <img src="img/cert/nfpa-13.webp" alt="" width="46" height="46">
-            <div><strong>NFPA 13 · 14 · 20 · 25</strong><span>Certificaciones internacionales</span></div>
+          <div class="hero__certs">
+            <p class="hero__certs-label">Certificaciones internacionales</p>
+            <ul class="hero__certs-list">
+              <li><img src="img/cert/nfpa-13.webp" alt="NFPA 13" width="360" height="360"></li>
+              <li><img src="img/cert/nfpa-14.webp" alt="NFPA 14" width="360" height="360"></li>
+              <li><img src="img/cert/nfpa-20.webp" alt="NFPA 20" width="360" height="360"></li>
+              <li><img src="img/cert/nfpa-25.webp" alt="NFPA 25" width="360" height="360"></li>
+              <li><img src="img/cert/blazemaster.webp" alt="BlazeMaster" width="360" height="360"></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -205,70 +207,94 @@
         <h3 class="sub-title" x-reveal><svg class="ic" style="color:var(--accent);width:1.2em;height:1.2em"><use href="#i-flame"/></svg> Protección Contra Incendio <small>· Nuestra principal especialidad</small></h3>
         <p class="sub-lead" x-reveal>Invertimos de forma constante en cursos y certificaciones internacionales para diseñar, instalar y mantener tu sistema con los estándares del sector.</p>
 
-        <div class="svc-grid">
-          <article class="svc" x-reveal="0">
-            <div class="svc__img"><img src="img/p/t/pci-mantenimiento.webp" alt="Filtros y consumibles para mantenimiento de bomba contra incendio" loading="lazy" width="640" height="853"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-wrench"/></svg></span>
-              <h4>Mantenimiento preventivo y correctivo</h4>
-              <p>Revisión, pruebas y reparación de sistemas contra incendio, para que operen el día que los necesites.</p>
-              <div class="tags"><span class="tag">Preventivo</span><span class="tag">Correctivo</span><span class="tag">NFPA 25</span></div>
-            </div>
-          </article>
+        <div class="carousel" x-data="carousel" @resize.window="update()" x-reveal>
+  <div class="svc-grid" x-ref="track" @scroll.passive="update()" tabindex="0" role="region" aria-label="Servicios de SM Imperio">
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/pci-mantenimiento.webp" alt="Filtros y consumibles para mantenimiento de bomba contra incendio" loading="lazy" width="640" height="853"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-wrench"/></svg></span>
+        <h4>Mantenimiento preventivo y correctivo</h4>
+        <p>Revisión, pruebas y reparación de sistemas contra incendio, para que operen el día que los necesites.</p>
+        <div class="tags"><span class="tag">Preventivo</span><span class="tag">Correctivo</span><span class="tag">NFPA 25</span></div>
+      </div>
+    </article>
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/pci-cuarto-bombas.webp" alt="Cuarto de bombas contra incendio instalado" loading="lazy" width="640" height="480"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-shield"/></svg></span>
+        <h4>Cuartos de bombas contra incendio</h4>
+        <p>Instalación integral de cuartos de bombas bajo normas NFPA y mexicanas.</p>
+        <div class="tags"><span class="tag">NFPA 20</span><span class="tag">Normas mexicanas</span></div>
+      </div>
+    </article>
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/pci-rociadores.webp" alt="Red de rociadores contra incendio en techo" loading="lazy" width="640" height="480"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
+        <h4>Rociadores y detección de humo</h4>
+        <p>Ingeniería, suministro e instalación de rociadores y sistemas de detección de humo.</p>
+        <div class="tags"><span class="tag">NFPA 13</span><span class="tag">NOM-002-STPS-2010</span></div>
+      </div>
+    </article>
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/pci-soportes-1.webp" alt="Soportes antisísmicos en tubería contra incendio" loading="lazy" width="640" height="390"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-building"/></svg></span>
+        <h4>Soportes antisísmicos</h4>
+        <p>Soportería antisísmica para tuberías bajo normas NFPA.</p>
+        <div class="tags"><span class="tag">NFPA</span><span class="tag">Antisísmico</span></div>
+      </div>
+    </article>
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/bombeo-hidroneumatico.webp" alt="Tanques de un sistema hidroneumático" loading="lazy" width="553" height="508"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
+        <h4>Bombeo y presurización</h4>
+        <p>Sistemas de bombeo de aguas grises y presurización (hidroneumáticos).</p>
+      </div>
+    </article>
+    <article class="svc">
+      <div class="svc__img"><img src="img/p/t/tablero-control-1.webp" alt="Tablero de control eléctrico armado" loading="lazy" width="535" height="410"></div>
+      <div class="svc__body">
+        <span class="svc__icon"><svg class="ic"><use href="#i-zap"/></svg></span>
+        <h4>Tableros de control</h4>
+        <p>Suministro (venta), instalación y reparación de tableros de control.</p>
+      </div>
+    </article>
+  </div>
+  <button type="button" class="carousel__btn carousel__btn--prev" @click="go(-1)" :disabled="atStart" x-show="!(atStart && atEnd)" x-cloak aria-label="Anterior"><svg class="ic"><use href="#i-arrow"/></svg></button>
+  <button type="button" class="carousel__btn carousel__btn--next" @click="go(1)" :disabled="atEnd" x-show="!(atStart && atEnd)" x-cloak aria-label="Siguiente"><svg class="ic"><use href="#i-arrow"/></svg></button>
+</div>
+</div>
+</section>
 
-          <article class="svc" x-reveal="1">
-            <div class="svc__img"><img src="img/p/t/pci-cuarto-bombas.webp" alt="Cuarto de bombas contra incendio instalado" loading="lazy" width="640" height="480"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-shield"/></svg></span>
-              <h4>Cuartos de bombas contra incendio</h4>
-              <p>Instalación integral de cuartos de bombas bajo normas NFPA y mexicanas.</p>
-              <div class="tags"><span class="tag">NFPA 20</span><span class="tag">Normas mexicanas</span></div>
-            </div>
-          </article>
+<!-- ============ CERTIFICACIONES (carrusel) ============ -->
+<section id="certificaciones" class="section section--alt" aria-labelledby="cert-title">
+  <div class="container">
+    <div class="section-head" x-reveal>
+      <span class="eyebrow">Certificaciones</span>
+      <h2 id="cert-title" class="h2">Capacitación internacional en cada instalación</h2>
+      <p>Las normas NFPA y los principales fabricantes del sector respaldan la forma en que diseñamos, instalamos y mantenemos tu sistema contra incendio.</p>
+    </div>
+  </div>
+  <div class="cert-marquee" role="group" aria-label="Certificaciones y marcas">
+    <ul class="cert-marquee__track" x-init="[...$el.children].forEach(n => { const c = n.cloneNode(true); c.setAttribute('aria-hidden', 'true'); $el.appendChild(c); })">
+      <li class="cert"><div class="cert__logo"><img src="img/cert/nfpa-13.webp" alt="Insignia NFPA 13" width="360" height="360" loading="lazy"></div><h4>NFPA 13</h4><p>Instalación de sistemas de rociadores automáticos</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/nfpa-14.webp" alt="Insignia NFPA 14" width="360" height="360" loading="lazy"></div><h4>NFPA 14</h4><p>Sistemas de tubería vertical y mangueras</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/nfpa-20.webp" alt="Insignia NFPA 20" width="360" height="360" loading="lazy"></div><h4>NFPA 20</h4><p>Instalación de bombas estacionarias contra incendio</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/nfpa-25.webp" alt="Insignia NFPA 25" width="360" height="360" loading="lazy"></div><h4>NFPA 25</h4><p>Inspección, pruebas y mantenimiento de sistemas a base de agua</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/blazemaster.webp" alt="Logotipo BlazeMaster Fire Protection Systems" width="360" height="360" loading="lazy"></div><h4>BlazeMaster</h4><p>Tubería CPVC para sistemas de protección contra incendio</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/novec.webp" alt="Logotipo Novec" width="360" height="360" loading="lazy"></div><h4>Novec</h4><p>Supresión de incendio con agente limpio</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/hochiki.webp" alt="Logotipo Hochiki de México" width="360" height="360" loading="lazy"></div><h4>Hochiki</h4><p>Detección y alarma de incendio</p></li>
+      <li class="cert"><div class="cert__logo"><img src="img/cert/viking.webp" alt="Logotipo Viking Fire Protection" width="360" height="360" loading="lazy"></div><h4>Viking</h4><p>Rociadores y componentes contra incendio</p></li>
+    </ul>
+  </div>
+</section>
 
-          <article class="svc" x-reveal="0">
-            <div class="svc__img"><img src="img/p/t/pci-rociadores.webp" alt="Red de rociadores contra incendio en techo" loading="lazy" width="640" height="480"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
-              <h4>Rociadores y detección de humo</h4>
-              <p>Ingeniería, suministro e instalación de rociadores y sistemas de detección de humo.</p>
-              <div class="tags"><span class="tag">NFPA 13</span><span class="tag">NOM-002-STPS-2010</span></div>
-            </div>
-          </article>
+<section id="equipo" class="section" aria-label="Misión, visión, equipo y oficinas">
+  <div class="container">
 
-          <article class="svc" x-reveal="1">
-            <div class="svc__img"><img src="img/p/t/pci-soportes-1.webp" alt="Soportes antisísmicos en tubería contra incendio" loading="lazy" width="640" height="390"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-building"/></svg></span>
-              <h4>Soportes antisísmicos</h4>
-              <p>Soportería antisísmica para tuberías bajo normas NFPA.</p>
-              <div class="tags"><span class="tag">NFPA</span><span class="tag">Antisísmico</span></div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Otros servicios -->
-        <h3 class="sub-title" x-reveal>Otros servicios</h3>
-        <div class="svc-grid svc-grid--other">
-          <article class="svc" x-reveal="0">
-            <div class="svc__img"><img src="img/p/t/bombeo-hidroneumatico.webp" alt="Tanques de un sistema hidroneumático" loading="lazy" width="553" height="508"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-drop"/></svg></span>
-              <h4>Bombeo y presurización</h4>
-              <p>Sistemas de bombeo de aguas grises y presurización (hidroneumáticos).</p>
-            </div>
-          </article>
-          <article class="svc" x-reveal="1">
-            <div class="svc__img"><img src="img/p/t/tablero-control-1.webp" alt="Tablero de control eléctrico armado" loading="lazy" width="535" height="410"></div>
-            <div class="svc__body">
-              <span class="svc__icon"><svg class="ic"><use href="#i-zap"/></svg></span>
-              <h4>Tableros de control</h4>
-              <p>Suministro (venta), instalación y reparación de tableros de control.</p>
-            </div>
-          </article>
-        </div>
-
-        <!-- Misión / Visión / Valores -->
+<!-- Misión / Visión / Valores -->
         <div class="mvv" x-reveal>
           <div class="mvv__tabs" role="tablist" aria-label="Misión, visión y valores">
             <button class="mvv__tab" role="tab" :aria-selected="mvvTab === 'mision'" @click="mvvTab = 'mision'" type="button">Misión <svg class="ic"><use href="#i-arrow"/></svg></button>
@@ -323,7 +349,8 @@
       </div>
     </section>
 
-    <!-- ============ CERTIFICACIONES ============ -->
+    <!-- CERTIFICACIONES (versión anterior, ya no se usa: se puede borrar) -->
+<template>
     <section id="certificaciones" class="section section--alt" aria-labelledby="cert-title">
       <div class="container">
         <div class="section-head" x-reveal>
@@ -359,7 +386,9 @@
       </div>
     </section>
 
-    <!-- ============ PROYECTOS ============ -->
+    </template>
+
+<!-- ============ PROYECTOS ============ -->
     <section id="proyectos" class="section" aria-labelledby="proy-title">
       <div class="container">
         <div class="section-head" x-reveal>
